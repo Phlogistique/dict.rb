@@ -1,21 +1,35 @@
 Ease search in edict, kanjidic and kradfile
 
-To install, make symbolic links to dict.rb named E, F, B, K and R in your $PATH. Also change $dict_dir in the source to a directory containing properly encoded edict, kanjidic and kradfile
+To install, make symbolic links to dict.rb named E, F, B, K and R in your
+$PATH. Also change $dict_dir in the source to a directory containing properly
+encoded edict, kanjidic and kradfile
 
 Use:
 
-E 言葉       # Looks for a word containing "言葉"
-E word       # Looks for a word which definition contains "word"
-E 言＜木世＞ # Looks for a word containing 言, then a kanji containing radicals
-             # 木 and 世 (also works with F and B; you can also use <> instead
-             # of ＜＞ but you will need quotes around them to escape them from
-             # the shell)
+$ E 言葉
+Looks for a word containing "言葉"
 
-F 言葉       # Looks for the word "言葉"
-F ことば     # Looks for a word pronounced "kotoba"
+$ E word
+Looks for a word which definition contains "word"
 
-B 言葉       # Looks for a word beginning with "言葉"
+$ E 言＜木世＞
+Looks for a word containing 言, then a kanji containing radicals
+木 and 世 (also works with F and B; you can also use <> instead
+of ＜＞ but you will need quotes around them to escape them from
+the shell)
 
-R 木世       # Looks for kanjis containing radicals 木 and 世
+$ F 言葉
+Looks for the word "言葉"
 
-K 葉         # Look for the kanji 葉
+$ F ことば
+Looks for a word pronounced "kotoba"
+
+$ B 言葉
+Looks for a word beginning with "言葉"
+
+$ R 木世
+Looks for kanjis containing radicals 木 and 世
+
+$ K 葉
+Look for the kanji 葉
+
