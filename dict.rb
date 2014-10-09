@@ -23,9 +23,8 @@ def search(dic, exp)
   dic.each{|i|print i if i =~ r}
 end
 def transform exp
-  exp.to_s.gsub(/<(.+?)>/) do |r| 
-    r = r[1..-2] # remove <>; ugly because gsub can't yield a Match object
-    r = _R(r).map{|i|i[0]}.join
+  exp.to_s.gsub(/<(.+?)>/) do $~
+    r = _R($~[1]).map{|i|i[0]}.join
     "[#{r}]"
   end
 end
@@ -34,15 +33,10 @@ def K exp; search(kanjidic, exp) end
 def F exp; E /^#{exp} |\[#{exp}\]/; end
 def B exp; E /^#{exp}|\[#{exp}/; end
 def _R *kanji
-  results = kradfile.clone
-  kanji.join.split('').each do |i|
-    results.select! do |j|
-      j =~ /#{i}/
-    end
-  end
-  results
+  kradfile.select { |j| kanji.join.split('').map { |i| j[i] }.all? }
 end
 def R *kanji; _R(*kanji).each{|i|print i}; end
+def D kanji; kradfile.each{|i| print i if i =~ /^#{kanji}/}; end
 
 send(*([File.basename($0)] + ARGV))
 
